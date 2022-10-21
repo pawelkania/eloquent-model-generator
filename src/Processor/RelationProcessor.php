@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany as EloquentBelongsToMan
 use Illuminate\Database\Eloquent\Relations\HasMany as EloquentHasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne as EloquentHasOne;
 use Illuminate\Support\Str;
+use Krlove\CodeGenerator\Model\ConstantModel;
 use Krlove\CodeGenerator\Model\DocBlockModel;
 use Krlove\CodeGenerator\Model\MethodModel;
 use Krlove\CodeGenerator\Model\VirtualPropertyModel;
@@ -175,6 +176,7 @@ class RelationProcessor implements ProcessorInterface
 
         $model->addMethod($method);
         $model->addProperty(new VirtualPropertyModel($name, $virtualPropertyType));
+        $model->addConstant(new ConstantModel('REL_' . strtoupper($name), $name));
     }
 
     /**
